@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Movie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">OMDb Movies</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/search">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/movies/favorites">Favorites</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-md mt-3">
+        <div class="mx-auto" style="width: 800px;">
+            <img class="img-fluid"
+                src="https://i0.wp.com/yaleclimateconnections.org/wp-content/uploads/2022/10/0520_MovieCollage_974.jpg?resize=780%2C408&ssl=1"
+                alt="">
+        </div>
+
+        <h1 class="text-center mt-3">Search A Movie</h1>
+
+        <form action="/api/movies/search" id="searchForm" method="post">
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="movie">Movie Title </span>
+                <input type="text" class="form-control" placeholder="enter movie title" aria-label="Username"
+                    aria-describedby="movie" name="movie" required>
+            </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+            </div>
+
+
+
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+<!-- <label for="search">Enter Movie Title: </label>
+        <input type="text" placeholder="enter movie title" name="movie"> -->
