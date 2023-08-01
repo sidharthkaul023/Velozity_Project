@@ -12,12 +12,12 @@ app.use(methodOverride('_method'));
 var favId = [];
 var movies = [];
 
-//Search Page Render
+//Search Page Render Route
 app.get('/search', (req, res) => {
     res.render('movieSearch');
 })
 
-//Show Matches Page
+//Show Matches Page Route
 app.post('/api/movies/search', async (req, res) => {
     try {
         const term = req.body.movie;
@@ -38,24 +38,29 @@ app.post('/api/movies/favorites/:id', (req, res) => {
 
 //Display Favorites Route
 app.get('/api/movies/favorites', async (req, res) => {
-
-    for (let id of favId) {
-        const movie = await axios.get(`https://www.omdbapi.com/?i=${id}&apikey=fe5b2a47`);
-        // console.log(movie.data);
-        movies.push(movie);
+    try {
+        for (let id of favId) {
+            const movie = await axios.get(`https://www.omdbapi.com/?i=${id}&apikey=fe5b2a47`);
+            // console.log(movie.data);
+            movies.push(movie);
+        }
+        // console.log(movies);
+        res.render('favorites', { movies });
+    } catch (e) {
+        console.log('ERROR OCCURED!!', e);
     }
-    // console.log(movies);
-    res.render('favorites', { movies });
 })
 
 //Remove From Favorites Routes
 app.delete('/api/movies/favorites/:id/remove', (req, res) => {
-    const { id, obj } = req.params;
-    favId = favId.filter(f => f !== id);
-    movies = movies.filter(m => m.id !== id);
-
-    res.redirect('/api/movies/favorites');
-
+    try {
+        const { id, obj } = req.params;
+        favId = favId.filter(f => f !== id);
+        movies = movies.filter(m => m.id !== id);
+        res.redirect('/api/movies/favorites');
+    } catch (e) {
+        console.log('ERROR OCCURED!!', e);
+    }
 })
 
 
